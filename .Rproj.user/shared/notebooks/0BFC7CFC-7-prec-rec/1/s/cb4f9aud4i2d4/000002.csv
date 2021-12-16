@@ -1,4 +1,0 @@
-"0","sensitivity(sms_results$predict_type, sms_results$actual_type, positive = ""spam"")"
-"2","Fehler in sensitivity(sms_results$predict_type, sms_results$actual_type,  : 
-  konnte Funktion ""sensitivity"" nicht finden
-"
