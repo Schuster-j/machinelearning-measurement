@@ -1,0 +1,19 @@
+# Setup
+
+Das Package *caret* beinhaltet einige Funktionen, mit denen sehr einfach zahlreiche Machine Learning Modelle erstellt und evaluiert werden können.
+
+```{r, echo=T, results='hide', message=F, warning=F}
+library(caret)
+```
+
+Der Datensatz *sms_results* beinhaltet die tatsächlichen sowie von einem ML Modell hervorgesagten Klassen eines sms-Spamfilters, sowie die jeweiligen Wahrscheinlichkeiten, dass eine Nachricht einer der beiden Klassen entspricht. 
+
+```{r}
+sms_results <- read.csv("sms_results.csv", stringsAsFactors = TRUE)
+head(sms_results)
+```
+Über die Funktion table() lässt sich eine Tabelle mit den Summen der tatsächlichen und hervorgesagten Werte erstellen:
+
+```{r}
+table(sms_results$actual_type, sms_results$predict_type)
+```

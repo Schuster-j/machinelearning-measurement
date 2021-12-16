@@ -1,0 +1,2 @@
+"0","sms_results <- read.csv(""sms_results.csv"", stringsAsFactors = TRUE)"
+"0","head(sms_results)"

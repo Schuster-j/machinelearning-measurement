@@ -1,0 +1,25 @@
+# Sensitivity & Specificity
+
+**Sensitivity (oder auch true positive rate)** misst die Proportion der positiven Fälle, die korrekt klassifiziert wurden:
+
+<center>
+![Sensitivity](img-sensitivity.png)
+</center>
+
+Neben der manuellen Berechnung anhand der Werte aus der Kreuztabelle, kann die sensitivity durch die Funktion *sensitivity()* aus dem Package caret berechnet werden:
+
+```{r}
+sensitivity(sms_results$predict_type, sms_results$actual_type, positive = "spam")
+```
+
+
+**Specificity (oder auch true negative rate)** misst hingegen die Proportion der negative Fälle, die korrekt klassifiziert wurden:
+
+<center>
+![Specificity](img-specificity.png)
+</center>
+
+Die specificity kann ebenfalls mit Hilfe von caret berechnet werden:
+```{r}
+specificity(sms_results$predict_type, sms_results$actual_type, negative = "ham")
+```

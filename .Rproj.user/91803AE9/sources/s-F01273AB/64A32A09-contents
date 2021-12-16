@@ -1,0 +1,9 @@
+# Confusion Matrix Übersicht
+
+Die **confusion matrix**, die durch den Befehl *confusionMatrix()* aus dem caret Package erstellt werden kann, ermöglicht nicht nur den Vergleich der tatsächlichen und hervorgesagten Werte, sondern berechnet zusätzlich Informationen und Kennzahlen über die Qualität der Vorhersagen.   
+
+So lassen sich im Output unter anderem Werte für Accuracy, Kappa, Sensitivity, Specificity finden, die im Folgenden genauer erläutert werden.
+
+```{r}
+confusionMatrix(sms_results$predict_type, sms_results$actual_type, positive = "spam")
+```

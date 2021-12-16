@@ -1,0 +1,25 @@
+# ROC Curves
+
+Die Receiver Operating Characteristic (ROC) Curve wird dazu genutzt den Kompromiss zwischen dem Entdecken von true positives und dem Vermeiden von false positives zu prüfen. Dabei wird der Anteil der true positives auf einer vertikalen und der Anteil der false positives auf einer horizontalen Achse dargestellt. Eine diagonale würde dabei einen Classifier repräsentieren, der keinen hervorsagenden Wert besitzt und true positives und false positives mit der exakt gleichen Rate hervorsagt. Ein perfekter Classifier würde hingegen durch den Punkt von 100% true positive rate und 0% false positive rate gehen.
+
+
+```{r loadlib, echo=T, results='hide', message=F, warning=F}
+library(pROC)
+```
+
+```{r, results = 'hide', fig.show='hide', message=F, warning=F}
+sms_roc <- roc(predictor = sms_results$prob_spam, sms_results$actual_type)
+
+roc_plot <- plot(sms_roc, main = "ROC curve for SMS spam filter",
+     col = "blue", lwd = 2, legacy.axes = TRUE)
+```
+<center>
+![ROC](img-rocplot.png)
+</center>
+
+Je näher die ROC Kurve dem perfekten Classifier ist, umso besser ist die Hervorsage positiver Fälle. Um dies zu messen, wird die Fläche unterhalb der ROC Kurve, die sogenannte area under the ROC curve (AUC) berechnet. 
+
+
+```{r}
+auc(sms_roc)
+```

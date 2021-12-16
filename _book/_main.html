@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Machine Learning Performance Measurement</title>
+  <meta name="description" content="Machine Learning Performance Measurement" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Machine Learning Performance Measurement" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Machine Learning Performance Measurement" />
+  
+  
+  
+
+<meta name="author" content="Autor: Jonathan Schuster   Kontakt: schuster.jonathan95@gmail.com   Github: https://github.com/schuster-j" />
+
+
+<meta name="date" content="2021-12-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="">ML Performance Measurement</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path=""><a href="#vorwort"><i class="fa fa-check"></i>Vorwort</a></li>
+<li class="chapter" data-level="1" data-path=""><a href="#setup"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#testverfahren"><i class="fa fa-check"></i><b>2</b> Testverfahren</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#cross-validation-kreuzvalidierung"><i class="fa fa-check"></i><b>2.1</b> Cross-Validation / Kreuzvalidierung</a></li>
+<li class="chapter" data-level="2.2" data-path=""><a href="#bootstrap-sampling-bootstrapping"><i class="fa fa-check"></i><b>2.2</b> Bootstrap sampling / Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path=""><a href="#confusion-matrix-übersicht"><i class="fa fa-check"></i><b>3</b> Confusion Matrix Übersicht</a></li>
+<li class="chapter" data-level="4" data-path=""><a href="#accuracy-error-rate"><i class="fa fa-check"></i><b>4</b> Accuracy &amp; Error rate</a></li>
+<li class="chapter" data-level="5" data-path=""><a href="#kappa-statistik"><i class="fa fa-check"></i><b>5</b> Kappa Statistik</a></li>
+<li class="chapter" data-level="6" data-path=""><a href="#sensitivity-specificity"><i class="fa fa-check"></i><b>6</b> Sensitivity &amp; Specificity</a></li>
+<li class="chapter" data-level="7" data-path=""><a href="#precision-recall"><i class="fa fa-check"></i><b>7</b> Precision &amp; Recall</a></li>
+<li class="chapter" data-level="8" data-path=""><a href="#roc-curves"><i class="fa fa-check"></i><b>8</b> ROC Curves</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Performance Measurement</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Machine Learning Performance Measurement</h1>
+<p class="author"><em>Autor: Jonathan Schuster <br> Kontakt: <a href="mailto:schuster.jonathan95@gmail.com" class="email">schuster.jonathan95@gmail.com</a> <br> Github: <a href="https://github.com/schuster-j" class="uri">https://github.com/schuster-j</a></em></p>
+<p class="date"><em>2021-12-16</em></p>
+</div>
+<div id="vorwort" class="section level1 unnumbered">
+<h1>Vorwort</h1>
+<p>Dieses Dokument dient als Übersicht zu verschiedenen Kriterien und Kennzahlen bei der Evaluation von Machine Learning Modelle und Techniken. Der für die Beispiele genutzte Datensätze stammen aus dem Buch <em>Machine Learning with R</em> von <em>Brett Lantz (Packt Publishing)</em>. Zusätzliche Inhalte wurden ergänzt.</p>
+
+</div>
+<div id="setup" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Setup</h1>
+<p>Das Package <em>caret</em> beinhaltet einige Funktionen, mit denen sehr einfach zahlreiche Machine Learning Modelle erstellt und evaluiert werden können.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<p>Der Datensatz <em>sms_results</em> beinhaltet die tatsächlichen sowie von einem ML Modell hervorgesagten Klassen eines sms-Spamfilters, sowie die jeweiligen Wahrscheinlichkeiten, dass eine Nachricht einer der beiden Klassen entspricht.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sms_results <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;sms_results.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sms_results)</span></code></pre></div>
+<pre><code>##   actual_type predict_type prob_spam prob_ham
+## 1         ham          ham   0.00000  1.00000
+## 2         ham          ham   0.00000  1.00000
+## 3         ham          ham   0.00016  0.99984
+## 4         ham          ham   0.00004  0.99996
+## 5        spam         spam   1.00000  0.00000
+## 6         ham          ham   0.00020  0.99980</code></pre>
+<p>Über die Funktion table() lässt sich eine Tabelle mit den Summen der tatsächlichen und hervorgesagten Werte erstellen:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sms_results<span class="sc">$</span>actual_type, sms_results<span class="sc">$</span>predict_type)</span></code></pre></div>
+<pre><code>##       
+##         ham spam
+##   ham  1203    4
+##   spam   31  152</code></pre>
+
+</div>
+<div id="testverfahren" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Testverfahren</h1>
+<p>Zur Bestimmung der Qualität eines Modells ist es unerlässlich dieses an unbekannten / zukünftigen Daten zu testen. Teilt man die vorliegenden Daten jedoch nur in jeweils einen einzelnen Trainings- und Testdatensatz, können die statistischen Kennzahlen des Modells unter Umständen zu stark davon beeinflusst werden, in welchen Proportionen die unterschiedlichen Klassen in den beiden Datensätzen vorliegen. Dies ist vor allem bei kleineren Stichproben, bzw. Stichproben, in denen eine bestimmte Klasse nur in geringer Proportion vertreten ist, von Bedeutung.</p>
+<p>Um dieses Problem zu lösen bieten sich verschiedene Verfahren an.</p>
+<div id="cross-validation-kreuzvalidierung" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Cross-Validation / Kreuzvalidierung</h2>
+<p>Ein mittlerweile fast schon als Standard etabliertes Testverfahren ist die sogenannte Cross-validation, bzw. <strong>k-fold corss-validation / k-fold CV</strong>. Dabei werden die Daten zufällig sortiert und in <em>k</em> Teilmengen, auch <em>folds</em> genannt, unterteilt. Anschließend werden <em>k</em> Modelle erstellt, bei denen jeweils eine andere dieser <em>k</em> Teilmengen als Testmenge verwendet wird. Jedes Modell wird dann anhand der Performance beim Vorhersagen der Testmenge evaluiert und die über alle Testmengen hinweg durchschnittliche Fehler- oder Erfolgsquote errechnet.</p>
+<br><br />
+
+<center>
+<img src="img-kfold.gif" title="fig:" alt="cv" />
+</center>
+<p><br></p>
+<p>Bei einer <strong>10-fold CV</strong> werden somit für 10 verschiedene Modelle jeweils 90% der Daten für das Training und 10% für das Testing verwendet, wobei es zu 10 verschiedenen Kombinationen aus Trainings- und Testmengen kommt.</p>
+<p>Eine Möglichkeit die Performance eines Modells noch verlässlicher zu testen, ist die <strong>repeated k-fold CV</strong> Methode. Bei dieser wird das jeweilige k-fold CV Verfahren beliebig oft wiederholt und das Ergebnis ebenfalls über den Durchschnitt berechnet. Beispielsweise wird kann dabei ein 10-fold CV zehn mal als Ganzes wiederholt und damit mit zehn unterschiedlichen zufälligen Sortierungen der Fälle durchgeführt werden.</p>
+</div>
+<div id="bootstrap-sampling-bootstrapping" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Bootstrap sampling / Bootstrapping</h2>
+<p>Eine Alternative zum k-fold CV ist das sogenannte <strong>Bootstrap sampling / Bootstrapping</strong>. Beim Bootstrap sampling werden mehrere Trainingsdatensätze aus zufällig gewählten Fällen erstellt und die jeweils übrig gebliebenen Fälle für die Ermittlung der Performance des Modells genutzt. Der Entscheidene Unterschied zum k-fold CV ist dabei, dass ein einzelner Fall mehrfach gezogen, also im Trainingsdatensatz verwendet werden kann.</p>
+<p>Im folgenden Beispiel wurde ein Trainingsdatensatz per Bootstrapping erstellt. Der dritte und vierte Fall im Trainingsdatensatz sind identisch. Der im Trainingsdatensatz nicht vorkommende dritte Fall des originalen Datensatzes <em>(Happy, Yes, 80, Pop)</em> würde in diesem Fall beim Testen des Modells verwendet werden.</p>
+<br>
+<center>
+<img src="img-bootstrapping.png" title="fig:" alt="bootstrapping" />
+</center>
+
+</div>
+</div>
+<div id="confusion-matrix-übersicht" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Confusion Matrix Übersicht</h1>
+<p>Die <strong>confusion matrix</strong>, die durch den Befehl <em>confusionMatrix()</em> aus dem caret Package erstellt werden kann, ermöglicht nicht nur den Vergleich der tatsächlichen und hervorgesagten Werte, sondern berechnet zusätzlich Informationen und Kennzahlen über die Qualität der Vorhersagen.</p>
+<p>So lassen sich im Output unter anderem Werte für Accuracy, Kappa, Sensitivity, Specificity finden, die im Folgenden genauer erläutert werden.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(sms_results<span class="sc">$</span>predict_type, sms_results<span class="sc">$</span>actual_type, <span class="at">positive =</span> <span class="st">&quot;spam&quot;</span>)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  ham spam
+##       ham  1203   31
+##       spam    4  152
+##                                           
+##                Accuracy : 0.9748          
+##                  95% CI : (0.9652, 0.9824)
+##     No Information Rate : 0.8683          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.8825          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 1.109e-05       
+##                                           
+##             Sensitivity : 0.8306          
+##             Specificity : 0.9967          
+##          Pos Pred Value : 0.9744          
+##          Neg Pred Value : 0.9749          
+##              Prevalence : 0.1317          
+##          Detection Rate : 0.1094          
+##    Detection Prevalence : 0.1122          
+##       Balanced Accuracy : 0.9136          
+##                                           
+##        &#39;Positive&#39; Class : spam            
+## </code></pre>
+
+</div>
+<div id="accuracy-error-rate" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Accuracy &amp; Error rate</h1>
+<p><strong>Accuracy oder auch success rate</strong> definiert den Anteil der korrekt hervorgesagten positiven und negativen Werte:</p>
+<center>
+<img src="img-accuracy.png" title="fig:" alt="Accuracy" />
+</center>
+<p>Die Anzahl der einzelnen Fälle je nach Klasse können aus der bereits erstellten Tabelle entnommen werden:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sms_results<span class="sc">$</span>actual_type, sms_results<span class="sc">$</span>predict_type)</span></code></pre></div>
+<pre><code>##       
+##         ham spam
+##   ham  1203    4
+##   spam   31  152</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> (<span class="dv">152</span> <span class="sc">+</span> <span class="dv">1203</span>) <span class="sc">/</span> (<span class="dv">152</span> <span class="sc">+</span> <span class="dv">1203</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">31</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(accuracy)</span></code></pre></div>
+<pre><code>## [1] 0.9748201</code></pre>
+<p><br></p>
+<p>Die <strong>Fehlerrate / error</strong> rate ergibt sich folglich aus dem Anteil der falsch hervorgesagten Werte oder der Differenz von 1 und der accuracy:</p>
+<center>
+<img src="img-errorrate.png" title="fig:" alt="Error" />
+</center>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>error_rate <span class="ot">&lt;-</span> (<span class="dv">4</span> <span class="sc">+</span> <span class="dv">31</span>) <span class="sc">/</span> (<span class="dv">152</span> <span class="sc">+</span> <span class="dv">1203</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">31</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(error_rate)</span></code></pre></div>
+<pre><code>## [1] 0.02517986</code></pre>
+
+</div>
+<div id="kappa-statistik" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Kappa Statistik</h1>
+<p>Die Kappa Statistik passt die accuracy unter Berücksichtigung der Wahrscheinlichkeit einer korrekten Hervorsage durch Zufall an. Sie ist daher vor allem bei Datensätzen, in denen die entsprechende Klasse ungleich verteilt ist von Bedeutung.</p>
+<p><em>Pr(a)</em> bezieht sich auf die Proportion von Übereinstimmungen der tatsächlichen und hervorgesagten Werte. <em>Pr(e)</em> bezieht sich auf die erwartete Übereinstimmung der Werte unter Annahme, dass diese zufällig gewählt worden sind:</p>
+<center>
+<img src="img-kappa.png" title="fig:" alt="Kappa" />
+</center>
+<p>Genau wie die accuracy kann die Kappa Statistik aus den in der Kreuztabelle der tatsächlichen und hervorgesagten Werten berechnet werden und wird in dem Output der Funktion <em>confusionMatrix()</em> aus dem Package caret angezeigt. Alternativ lässt sich die Kappa mit der Funktion <em>Kappa()</em> aus dem Package vcd berechnen.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Kappa</span>(<span class="fu">table</span>(sms_results<span class="sc">$</span>actual_type, sms_results<span class="sc">$</span>predict_type))</span></code></pre></div>
+<pre><code>##             value     ASE     z Pr(&gt;|z|)
+## Unweighted 0.8825 0.01949 45.27        0
+## Weighted   0.8825 0.01949 45.27        0</code></pre>
+
+</div>
+<div id="sensitivity-specificity" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Sensitivity &amp; Specificity</h1>
+<p><strong>Sensitivity (oder auch true positive rate)</strong> misst die Proportion der positiven Fälle, die korrekt klassifiziert wurden:</p>
+<center>
+<img src="img-sensitivity.png" title="fig:" alt="Sensitivity" />
+</center>
+<p>Neben der manuellen Berechnung anhand der Werte aus der Kreuztabelle, kann die sensitivity durch die Funktion <em>sensitivity()</em> aus dem Package caret berechnet werden:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sensitivity</span>(sms_results<span class="sc">$</span>predict_type, sms_results<span class="sc">$</span>actual_type, <span class="at">positive =</span> <span class="st">&quot;spam&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8306011</code></pre>
+<p><strong>Specificity (oder auch true negative rate)</strong> misst hingegen die Proportion der negative Fälle, die korrekt klassifiziert wurden:</p>
+<center>
+<img src="img-specificity.png" title="fig:" alt="Specificity" />
+</center>
+<p>Die specificity kann ebenfalls mit Hilfe von caret berechnet werden:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">specificity</span>(sms_results<span class="sc">$</span>predict_type, sms_results<span class="sc">$</span>actual_type, <span class="at">negative =</span> <span class="st">&quot;ham&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.996686</code></pre>
+
+</div>
+<div id="precision-recall" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Precision &amp; Recall</h1>
+<p><strong>Precision (oder auch positive predictive value)</strong> misst die Proportion der positiven hervorgesagten Fälle, die tatsächlich positiv sind. In anderen Worten: Wieviele der positiv klassifizierten Fälle sind korrekt?</p>
+<center>
+<img src="img-precision.png" title="fig:" alt="Precision" />
+</center>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">posPredValue</span>(sms_results<span class="sc">$</span>predict_type, sms_results<span class="sc">$</span>actual_type, <span class="at">positive =</span> <span class="st">&quot;spam&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.974359</code></pre>
+<p><strong>Recall</strong> misst die Vollständigkeit der Ergebnisse und entspricht der sensitivity.</p>
+<center>
+<img src="img-recall.png" title="fig:" alt="Recall" />
+</center>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sensitivity</span>(sms_results<span class="sc">$</span>predict_type, sms_results<span class="sc">$</span>actual_type, <span class="at">positive =</span> <span class="st">&quot;spam&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8306011</code></pre>
+
+</div>
+<div id="roc-curves" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> ROC Curves</h1>
+<p>Die <strong>Receiver Operating Characteristic (ROC) Curve</strong> wird dazu genutzt den Kompromiss zwischen dem Entdecken von true positives und dem Vermeiden von false positives zu prüfen. Dabei wird der Anteil der true positives auf einer vertikalen und der Anteil der false positives auf einer horizontalen Achse dargestellt. Eine diagonale würde dabei einen Classifier repräsentieren, der keinen hervorsagenden Wert besitzt und true positives sowie false positives mit der exakt gleichen Rate hervorsagt. Ein perfekter Classifier würde hingegen durch den Punkt von 100% true positive rate und 0% false positive rate gehen.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sms_roc <span class="ot">&lt;-</span> <span class="fu">roc</span>(<span class="at">predictor =</span> sms_results<span class="sc">$</span>prob_spam, sms_results<span class="sc">$</span>actual_type)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>roc_plot <span class="ot">&lt;-</span> <span class="fu">plot</span>(sms_roc, <span class="at">main =</span> <span class="st">&quot;ROC curve for SMS spam filter&quot;</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">legacy.axes =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<center>
+<img src="img-rocplot.png" title="fig:" alt="ROC" />
+</center>
+<p>Je näher die ROC Kurve dem perfekten Classifier ist, umso besser ist die Hervorsage positiver Fälle. Um dies zu messen, wird die Fläche unterhalb der ROC Kurve, die sogenannte area under the ROC curve (AUC) berechnet.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(sms_roc)</span></code></pre></div>
+<pre><code>## Area under the curve: 0.9836</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toc_float": {
+"collapsed": false
+},
+"toc_depth": 3
+});
+});
+</script>
+
+</body>
+
+</html>
