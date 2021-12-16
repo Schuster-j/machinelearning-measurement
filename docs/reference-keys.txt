@@ -1,0 +1,10 @@
+setup
+testverfahren
+cross-validation-kreuzvalidierung
+bootstrap-sampling-bootstrapping
+confusion-matrix-übersicht
+accuracy-error-rate
+kappa-statistik
+sensitivity-specificity
+precision-recall
+roc-curves
